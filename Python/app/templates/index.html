@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta chaeset="UTF-8">
+    <title>Livro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="col-8 m-auto py-2 pb-2 " >
+        <h1>Livros</h1>
+     
+    </div>
+    <div class="col-8 m-auto py-2 pb-2 ">
+        <a href="/form" class="btn btn-success">Adicionar</a>
+    </div>
+    <div class="col-8 m-auto py-2 pb-2 ">
+       
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">cod_livro</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Titulo-livro</th>
+                <th scope="col">autor-livro</th>
+                <th scope="col">edicao-livro</th>
+                <th scope="col">ano-lancamento</th>
+                <th scope="col">cod-biblioteca</th>
+                <th scope="col">link-livro</th>
+                <th scope="col">status-do livro</th>
+                <th scope="col">Acoes</th>
+                
+
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for dbs in db %}
+              <tr>
+                <th>{{dbs.id}}</th>
+                <td>{{dbs.cod_livro}}</td>
+                <td>{{dbs.ISBN}}</td>
+                <td>{{dbs.Titulo_livro}}</td>
+                <td>{{dbs.autor_livro}}</td>
+                <td>{{dbs.edicao_livro}}</td>
+                <td>{{dbs.ano_lancamento}}</td>
+                <td>{{dbs.cod_biblioteca}}</td>
+                <td>{{dbs.link_livro}}</td>
+                <td>{{dbs.status_livro}}</td>
+                
+                <td><a href="/edit/{{dbs.id}}/" class="btn btn-warning">Editar</a>
+                    <a href="/view/{{dbs.id}}/" class="btn btn-success">Visualizar</a>
+                    <a href="/delete/{{dbs.id}}/" class="btn btn-danger btnDel">Deletar</a>
+                  </td>
+                  
+                
+              </tr>
+
+              {% endfor %}
+  
+              </tbody>
+              </table>
+
+    </div>
+    <div class="pagination">
+      {% if db.has_previous %}
+
+      <a href="?page={{db.previous_page_number}}"> < </a>
+      {% endif %}
+
+      {{db.number}}
+
+      {% if db.has_next %}
+
+      <a href="?page={{db.next_page_number}}"> > </a>
+      {% endif %}
+
+
+    </div>
+{% load static %}
+<script src="{% static 'javascript.js' %}"></script>
+
+</body>
+
+</html>
